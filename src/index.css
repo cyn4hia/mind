@@ -1,0 +1,49 @@
+:root {
+  --bg: #fafaf8;
+  --text: #3a3a3a;
+  --text-soft: #9a9a96;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  font-family: "DM Sans", sans-serif;
+}
+
+/* Neuron glow rings — constant beam */
+.glow-ring {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+.glow-ring-delayed {
+  animation: glowPulse 2s ease-in-out 1s infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.8); opacity: 1; }
+}
+
+/* Star shape — constant subtle pulse */
+.star-beam {
+  animation: starBeam 2s ease-in-out infinite;
+}
+
+@keyframes starBeam {
+  0%, 100% { transform: scale(3); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* Tooltip enter */
+@keyframes tipIn {
+  from { opacity: 0; transform: translate(-50%, -92%); }
+  to { opacity: 1; transform: translate(-50%, -100%); }
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(0, 0, 0, 0.08); border-radius: 3px; }
