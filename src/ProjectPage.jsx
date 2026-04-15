@@ -34,7 +34,7 @@ export default function ProjectPage({ project, onBack }) {
       </button>
 
       <div style={{ maxWidth: 680, margin: "0 auto", padding: "100px 32px 80px" }}>
-        <svg width="32" height="32" viewBox="0 0 28 28" style={{ marginBottom: 20, filter: `drop-shadow(0 0 6px ${project.color}60)`, animation: "sparkBreath 3.5s ease-in-out infinite" }}>
+        <svg width="102" height="102" viewBox="0 0 28 28" style={{ marginBottom: 20, filter: `drop-shadow(0 0 6px ${project.color}60)`, animation: "sparkBreath 3.5s ease-in-out infinite" }}>
           <path d="M14 2 C14.6 10.5 17.5 13.4 26 14 C17.5 14.6 14.6 17.5 14 26 C13.4 17.5 10.5 14.6 2 14 C10.5 13.4 13.4 10.5 14 2Z" fill={project.color} opacity="0.7" />
         </svg>
 
@@ -55,12 +55,12 @@ export default function ProjectPage({ project, onBack }) {
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, lineHeight: 1.75, color: "var(--text-soft)", maxWidth: 480, marginTop: 12 }}>{project.why}</p>
         </div>
 
-        <div style={{ margin: "48px 0", height: 1, backgroundImage: `repeating-linear-gradient(90deg, ${project.color}30 0, ${project.color}30 6px, transparent 6px, transparent 14px)` }} />
+        <div style={{ margin: "28px 0", height: 1, backgroundImage: `repeating-linear-gradient(90deg, ${project.color}30 0, ${project.color}30 6px, transparent 6px, transparent 14px)` }} />
 
         {project.steps.map((step, i) => (
           <div key={i} style={{ marginBottom: 40, opacity: i < visibleSteps ? 1 : 0, transform: i < visibleSteps ? "translateY(0)" : "translateY(16px)", transition: "all 0.5s ease" }}>
             <div style={{ display: "flex", alignItems: "baseline", gap: 14 }}>
-              <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 24, fontWeight: 700, fontStyle: "italic", color: project.color, opacity: 0.5 }}>{String(i + 1).padStart(2, "0")}</span>
+              <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 64, fontWeight: 500, fontStyle: "italic", color: project.color, opacity: 0.5 }}>{String(i + 1).padStart(2, "0")}</span>
               <h3 style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 19, fontWeight: 600, margin: 0, color: "var(--text)" }}>{step.title}</h3>
             </div>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, lineHeight: 1.7, color: "var(--text-soft)", marginLeft: 46, marginTop: 4 }}>{step.description}</p>
