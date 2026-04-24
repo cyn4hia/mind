@@ -1,47 +1,50 @@
 :root {
-  --bg: #fafaf8;
-  --text: #3a3a3a;
+  --bg: #ffffff;
+  --text: #000000;
   --text-soft: #9a9a96;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background: var(--bg);
   font-family: "DM Sans", sans-serif;
 }
 
-/* Neuron glow rings — constant beam */
+/* Trail fades out as star flies */
+@keyframes trailFade {
+  0%   { opacity: 1;   width: 120px; box-shadow: 0 0 16px 6px currentColor; }
+  40%  { opacity: 0.7; width: 90px; }
+  100% { opacity: 0;   width: 0px;  box-shadow: 0 0 0px 0px transparent; }
+}
+
+/* Persistent beam after landing */
 .glow-ring {
   animation: glowPulse 2s ease-in-out infinite;
 }
+
 .glow-ring-delayed {
   animation: glowPulse 2s ease-in-out 1s infinite;
 }
 
 @keyframes glowPulse {
-  0%, 100% { transform: scale(1); opacity: 0.4; }
-  50% { transform: scale(1.8); opacity: 1; }
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50%      { transform: scale(1.8); opacity: 0.9; }
 }
 
-/* Star shape — constant subtle pulse */
 .star-beam {
-  animation: starBeam 2s ease-in-out infinite;
+  animation: starPulse 1.5s ease-in-out infinite !important;
 }
 
-@keyframes starBeam {
-  0%, 100% { transform: scale(3); opacity: 0.8; }
-  50% { transform: scale(1.15); opacity: 1; }
+@keyframes starPulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 8px var(--glow)); }
+  50%      { transform: scale(1.35); filter: drop-shadow(0 0 16px var(--glow)); }
 }
 
-/* Tooltip enter */
+/* Tooltip */
 @keyframes tipIn {
   from { opacity: 0; transform: translate(-50%, -92%); }
-  to { opacity: 1; transform: translate(-50%, -100%); }
+  to   { opacity: 1; transform: translate(-50%, -100%); }
 }
 
 ::-webkit-scrollbar { width: 5px; }

@@ -1,17 +1,18 @@
 const hciProject = {
   id: "hci-project",
-  name: "HCI Project",
+  name: "Husky Link",
   x: 42,
   y: 40,
   color: "#a8b07d",
-  date: "2025",
+  date: "Jan 2026",
   skills: ["Figma", "Hi-fi Prototyping", "Lo-fi prototyping", "Heuristic Evaluation"],
-  why: "CS 2484 Semester Project",
+  why: "Northeastern Human-Computer Interaction (CS 2484) semester project",
   steps: [
-    { title: "Plan & Sketch", description: "in progress" },
-    { title: "Prototype", description: "in progress" },
-    { title: "Develop", description: "in progress" },
-    { title: "What I Do Now", description: "in progress" },
+    { title: "Identify the Problem", description: "in progress" },
+    { title: "POV Development", description: "in progress" },
+    { title: "Lo-fi Prototyping", description: "in progress" },
+    { title: "Hi-fi Prototyping", description: "in progress" },
+    { title: "Final Refinements", description: "in progress" },
   ],
 };
 
