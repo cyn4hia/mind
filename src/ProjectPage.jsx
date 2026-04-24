@@ -1,5 +1,92 @@
 import { useState, useEffect } from "react";
 
+function ImageCarousel({ images, color, title }) {
+  const [current, setCurrent] = useState(0);
+
+  const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
+  const next = () => setCurrent((c) => (c + 1) % images.length);
+
+  return (
+    <div style={{ marginTop: 12, marginBottom: 12, position: "relative", maxWidth: "50%", marginLeft: "auto", marginRight: "auto" }}>
+      <div style={{
+        overflow: "hidden", borderRadius: 10,
+        border: `1px solid ${color}20`,
+        position: "relative",
+      }}>
+        <div style={{
+          display: "flex",
+          transition: "transform 0.4s ease",
+          transform: `translateX(-${current * 100}%)`,
+        }}>
+          {images.map((img, i) => (
+            <img
+              key={i}
+              src={import.meta.env.BASE_URL + img}
+              alt={`${title} ${i + 1}`}
+              style={{
+                minWidth: "100%", maxWidth: "100%",
+                display: "block", objectFit: "contain",
+                background: "var(--bg)",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Arrows */}
+      {images.length > 1 && (
+        <>
+          <button onClick={prev} style={{
+            position: "absolute", top: "50%", left: -16,
+            transform: "translateY(-50%)",
+            width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(255,255,255,0.9)", border: `1px solid ${color}30`,
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            transition: "all 0.2s",
+          }}
+            onMouseEnter={(e) => e.currentTarget.style.borderColor = color}
+            onMouseLeave={(e) => e.currentTarget.style.borderColor = color + "30"}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M10 3L5 8L10 13" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+          <button onClick={next} style={{
+            position: "absolute", top: "50%", right: -16,
+            transform: "translateY(-50%)",
+            width: 32, height: 32, borderRadius: "50%",
+            background: "rgba(255,255,255,0.9)", border: `1px solid ${color}30`,
+            cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.08)",
+            transition: "all 0.2s",
+          }}
+            onMouseEnter={(e) => e.currentTarget.style.borderColor = color}
+            onMouseLeave={(e) => e.currentTarget.style.borderColor = color + "30"}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3L11 8L6 13" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        </>
+      )}
+
+      {/* Dots */}
+      {images.length > 1 && (
+        <div style={{ display: "flex", justifyContent: "center", gap: 6, marginTop: 10 }}>
+          {images.map((_, i) => (
+            <button key={i} onClick={() => setCurrent(i)} style={{
+              width: current === i ? 18 : 6, height: 6,
+              borderRadius: 3, border: "none", cursor: "pointer",
+              background: current === i ? color : color + "30",
+              transition: "all 0.3s",
+            }} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 export default function ProjectPage({ project, onBack }) {
   const [visibleSteps, setVisibleSteps] = useState(0);
 
@@ -102,13 +189,33 @@ export default function ProjectPage({ project, onBack }) {
                     src={import.meta.env.BASE_URL + block.image}
                     alt={step.title}
                     style={{
-                      maxWidth: "100%", borderRadius: 8,
+                      maxWidth: "60%", borderRadius: 8,
                       border: `1px solid ${project.color}15`,
                       marginTop: 8, marginBottom: 8,
+                      display: "block", margin: "8px auto",
                     }}
                   />
                 )}
+                {block.images && (
+                  <ImageCarousel images={block.images} color={project.color} title={step.title} />
+                )}
 
+                {block.embed && (
+                  <div style={{
+                    marginTop: 12, marginBottom: 12,
+                    borderRadius: 10, overflow: "hidden",
+                    border: `1px solid ${project.color}20`,
+                  }}>
+                    <iframe
+                      src={block.embed}
+                      style={{
+                        width: "100%", height: block.embedHeight || 500,
+                        border: "none", display: "block",
+                      }}
+                      allowFullScreen
+                    />
+                  </div>
+                )}
                 {block.quote && (
                   <div style={{ position: "relative", padding: "20px 24px" }}>
                     <span style={{
@@ -207,6 +314,27 @@ export default function ProjectPage({ project, onBack }) {
             )}
           </div>
         ))}
+        {/* Final Reflections */}
+        {project.reflection && (
+          <div style={{ marginTop: 60 }}>
+            <div style={{ margin: "28px 0", height: 1, backgroundImage: `repeating-linear-gradient(90deg, ${project.color}30 0, ${project.color}30 6px, transparent 6px, transparent 14px)` }} />
+            <h2 style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: "clamp(32px, 5vw, 44px)",
+              fontWeight: 700, fontStyle: "italic",
+              color: project.color, opacity: 0.7, margin: 0,
+            }}>
+              Final Reflections
+            </h2>
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif", fontSize: 15,
+              lineHeight: 1.75, color: "var(--text-soft)",
+              maxWidth: 840, marginTop: 12,
+            }}>
+              {project.reflection}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
