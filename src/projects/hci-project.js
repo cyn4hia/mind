@@ -32,8 +32,8 @@ const hciProject = {
         "Connecting with a new person online", 
         "Comforting someone who is lonely (through online forum)" ],
         afterText: "We then created a hierarchical task diagram for each task which would later help us develop our lo-fi prototype "},
-    { title: "Lo-fi Prototyping", content: [{image: "images/hci-storyboard.png" },
-
+    { title: "Lo-fi Prototyping", content: [{text: "We each created a storyboard which drew from our POV statement. "},{image: "images/hci-storyboard.png"},
+      {text: "Afterwards we created a lo-fi prototyped frame based off of our tasks"}
     ] },
     { title: "Hi-fi Prototyping", description: "in progress" },
     { title: "Final Refinements", description: "in progress" },
