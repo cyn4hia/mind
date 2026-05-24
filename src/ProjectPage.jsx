@@ -104,15 +104,15 @@ export default function ProjectPage({ project, onBack }) {
         onClick={onBack}
         style={{
           position: "fixed", top: 24, left: 24, zIndex: 500,
-          background: "rgba(255,255,255,0.6)", backdropFilter: "blur(8px)",
-          border: "1px solid rgba(0,0,0,0.06)", borderRadius: 40,
+          background: "var(--bg)", backdropFilter: "blur(8px)",
+          border: "1px solid var(--text-soft)",
           padding: "8px 20px", color: "var(--text-soft)",
           fontFamily: "'DM Sans', sans-serif", fontSize: 13,
           cursor: "pointer", display: "flex", alignItems: "center", gap: 6,
           transition: "all 0.3s",
         }}
         onMouseEnter={(e) => { e.currentTarget.style.borderColor = project.color + "60"; e.currentTarget.style.color = project.color; }}
-        onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.06)"; e.currentTarget.style.color = "var(--text-soft)"; }}
+        onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(0,0,0,0.06)"; e.currentTarget.style.borderColor = "var(--text-soft)";}}
       >
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
           <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -204,7 +204,7 @@ export default function ProjectPage({ project, onBack }) {
                   <div style={{
                     marginTop: 12, marginBottom: 12,
                     borderRadius: 10, overflow: "hidden",
-                    border: `1px solid ${project.color}20`,
+                    border: "none",
                   }}>
                     <iframe
                       src={block.embed}

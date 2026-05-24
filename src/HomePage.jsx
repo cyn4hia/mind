@@ -124,7 +124,7 @@ function ConnectionLines() {
     </svg>
   );
 }
- 
+
 export default function HomePage({ onSelectProject }) {
   const [hovered, setHovered] = useState(null);
   const [loaded, setLoaded] = useState(false);
